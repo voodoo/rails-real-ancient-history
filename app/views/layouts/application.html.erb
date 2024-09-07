@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Ancient History</title>
+    <title>RealAncient History</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -12,7 +12,14 @@
   </head>
 
   <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+    <header class="bg-gray-800 text-white py-4">
+      <div class="container mx-auto px-5">
+        <%= link_to root_path, class: "text-2xl font-bold hover:text-gray-300" do %>
+          Real Ancient History
+        <% end %>
+      </div>
+    </header>
+    <main class="container mx-auto mt-8 px-5 flex">
       <%= yield %>
     </main>
   </body>
