@@ -25,7 +25,7 @@
           <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"><%= post.title %></td>
           <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><%= truncate(post.body, length: 100) %></td>
           <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-            <%= post.comments.last&.body || "No comments yet" %>
+            <%= pluralize(post.comments.count, 'comment') %>
           </td>
           <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
             <%= link_to "Show", post, class: "text-indigo-600 hover:text-indigo-900" %>

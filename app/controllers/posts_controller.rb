@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[ show edit update destroy ]
+  before_action :set_post, only: %i[ show edit update destroy add_comment ]
 
   # GET /posts or /posts.json
   def index
@@ -8,6 +8,8 @@ class PostsController < ApplicationController
 
   # GET /posts/1 or /posts/1.json
   def show
+    @post = Post.find(params[:id])
+    @comment = Comment.new
   end
 
   # GET /posts/new
@@ -57,6 +59,15 @@ class PostsController < ApplicationController
     end
   end
 
+  def add_comment
+    @comment = @post.comments.build(comment_params)
+    if @comment.save
+      redirect_to @post, notice: 'Comment was successfully added.'
+    else
+      render :show
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
@@ -66,5 +77,9 @@ class PostsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def post_params
       params.require(:post).permit(:title, :body)
+    end
+
+    def comment_params
+      params.require(:comment).permit(:body)
     end
 end
